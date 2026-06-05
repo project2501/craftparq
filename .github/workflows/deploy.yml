@@ -1,0 +1,88 @@
+name: Build and Deploy to S3
+
+# Build the Hugo site and sync the generated public/ folder to the S3 bucket
+# on every push to main.
+on:
+  push:
+    branches: [main]
+  # Allows manually triggering the workflow from the Actions tab.
+  workflow_dispatch:
+
+# Don't run two deploys at once; cancel an in-progress run if a newer push lands.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HUGO_VERSION: "0.156.0"
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      # Optional: set the CLOUDFRONT_DISTRIBUTION_ID secret to enable cache
+      # invalidation. If unset, the invalidation step is skipped.
+      CF_DIST_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history (Hugo .GitInfo / .Lastmod can use it)
+
+      # This site uses its own layouts (no theme module), so no Go/Node needed —
+      # just Hugo extended for the SCSS pipeline.
+      - name: Install Hugo
+        run: |
+          wget -O hugo.tar.gz \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          tar -xzf hugo.tar.gz hugo
+          sudo mv hugo /usr/local/bin/hugo
+          hugo version
+
+      - name: Build site
+        run: hugo --minify --gc
+
+      # ---- Deploy ----
+      # Uses long-lived AWS keys stored as GitHub Actions secrets.
+      # Configure under: Settings > Secrets and variables > Actions.
+      #   AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, S3_BUCKET_NAME
+      #   CLOUDFRONT_DISTRIBUTION_ID (optional, enables cache invalidation)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sync to S3
+        run: aws s3 sync public/ "s3://${{ secrets.S3_BUCKET_NAME }}" --delete
+
+      # CloudFront serves over HTTPS / the custom domain; S3 sync alone won't
+      # refresh cached edge copies, so invalidate after a successful sync.
+      # Skipped automatically if CLOUDFRONT_DISTRIBUTION_ID isn't set yet.
+      - name: Invalidate CloudFront cache
+        if: ${{ env.CF_DIST_ID != '' }}
+        run: aws cloudfront create-invalidation --distribution-id "$CF_DIST_ID" --paths "/*"
+
+# ---------------------------------------------------------------------------
+# OPTIONAL, MORE SECURE ALTERNATIVE — OIDC instead of long-lived AWS keys
+# ---------------------------------------------------------------------------
+# Create an IAM role that trusts GitHub's OIDC provider, then replace the
+# "Configure AWS credentials" step above with the role assumption (no secrets
+# stored in GitHub except the bucket/distribution names):
+#
+#   permissions:
+#     contents: read
+#     id-token: write        # <-- required for OIDC
+#
+#   - name: Configure AWS credentials (OIDC)
+#     uses: aws-actions/configure-aws-credentials@v4
+#     with:
+#       role-to-assume: arn:aws:iam::<ACCOUNT_ID>:role/<github-actions-deploy-role>
+#       aws-region: <your-region>
+#
+# Then keep the same "aws s3 sync" / invalidation steps.
+# ---------------------------------------------------------------------------
