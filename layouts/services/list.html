@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="cq-section">
+  <div class="cq-section-tag">{{ i18n "services_tag" }}</div>
+  <div class="cq-section-title">{{ i18n "services_title" }}</div>
+  <p class="cq-section-sub">{{ i18n "services_sub" }}</p>
+
+  <div class="cq-services-grid">
+    {{ range .Pages.ByWeight }}
+    <a class="cq-service-card" href="{{ .RelPermalink }}">
+      <div class="cq-service-icon"><i class="ti {{ .Params.icon | default "ti-stack-2" }}" aria-hidden="true"></i></div>
+      <div class="cq-service-title">{{ .Title }}</div>
+      <p class="cq-service-desc">{{ .Params.summary | default .Params.lead }}</p>
+      {{ with .Params.highlights }}
+      <div class="cq-service-tags">
+        {{ range . }}<span class="cq-tag">{{ . }}</span>{{ end }}
+      </div>
+      {{ end }}
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+{{ partial "contact-section.html" . }}
+{{ end }}

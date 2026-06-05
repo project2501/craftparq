@@ -1,0 +1,49 @@
+{{ define "main" }}
+<section class="cq-service-hero">
+  <div class="cq-service-hero-left">
+    <div class="cq-section-tag">{{ .Params.eyebrow | default (i18n "services_tag") }}</div>
+    <h1 class="cq-service-hero-title">{{ .Title }}</h1>
+    <p class="cq-service-hero-lead">{{ .Params.lead }}</p>
+    <div class="cq-hero-actions">
+      <a href="{{ "/contact" | relLangURL }}" class="cq-btn-primary">{{ i18n "hero_cta_primary" }} →</a>
+      <a href="{{ "/services" | relLangURL }}" class="cq-btn-ghost">{{ i18n "svc_all_services" }}</a>
+    </div>
+  </div>
+  <div class="cq-service-hero-right">
+    <div class="cq-service-hero-card">
+      <div class="cq-service-icon"><i class="ti {{ .Params.icon | default "ti-stack-2" }}" aria-hidden="true"></i></div>
+      {{ with .Params.highlights }}
+      <div class="cq-card-heading">{{ i18n "svc_focus" }}</div>
+      <ul class="cq-focus-list">
+        {{ range . }}<li><i class="ti ti-check" aria-hidden="true"></i><span>{{ . }}</span></li>{{ end }}
+      </ul>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ with .Content }}
+<section class="cq-section">
+  <div class="cq-section-tag">{{ i18n "svc_overview" }}</div>
+  <div class="cq-post-body cq-service-prose">{{ . }}</div>
+</section>
+{{ end }}
+
+{{ with .Params.offerings }}
+<section class="cq-section">
+  <div class="cq-section-tag">{{ i18n "svc_scope_tag" }}</div>
+  <div class="cq-section-title">{{ i18n "svc_scope_title" }}</div>
+  <div class="cq-feature-grid">
+    {{ range . }}
+    <div class="cq-feature">
+      <div class="cq-feature-icon"><i class="ti {{ .icon | default "ti-check" }}" aria-hidden="true"></i></div>
+      <div class="cq-feature-title">{{ .title }}</div>
+      <p class="cq-feature-desc">{{ .desc }}</p>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ partial "cta-band.html" . }}
+{{ end }}

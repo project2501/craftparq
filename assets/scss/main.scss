@@ -320,6 +320,136 @@ h1 {
   background: rgba($gold, 0.06);
 }
 
+// ── Service detail page ──────────────────────────────────────────────────────
+.cq-service-hero {
+  padding: 80px 40px 60px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+  border-bottom: 0.5px solid $border;
+}
+
+.cq-service-hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 46px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #fff;
+  margin-bottom: 22px;
+}
+
+.cq-service-hero-lead {
+  font-size: 17px;
+  color: $muted;
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 34px;
+}
+
+.cq-service-hero-card {
+  background: linear-gradient(160deg, #1a3050 0%, #14233a 100%);
+  border: 0.5px solid $border;
+  border-radius: 14px;
+  padding: 36px;
+
+  .cq-service-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    margin-bottom: 26px;
+    i { font-size: 28px; }
+  }
+}
+
+.cq-card-heading {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $muted;
+  margin-bottom: 8px;
+}
+
+.cq-focus-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 0.5px solid $border;
+    font-size: 15px;
+    color: #fff;
+
+    i { color: $gold; font-size: 17px; flex-shrink: 0; }
+    &:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+}
+
+// ── Compact contact CTA band ─────────────────────────────────────────────────
+.cq-cta-band {
+  margin: 56px 40px 80px;
+  padding: 40px 48px;
+  background: linear-gradient(135deg, $slate 0%, #16263c 100%);
+  border: 0.5px solid $border-gold;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.cq-cta-band-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.cq-cta-band-sub {
+  font-size: 14px;
+  color: $muted;
+  line-height: 1.6;
+  max-width: 540px;
+}
+
+.cq-cta-band .cq-btn-primary { white-space: nowrap; flex-shrink: 0; }
+
+.cq-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.cq-feature {
+  background: $slate;
+  border: 0.5px solid $border;
+  border-radius: 10px;
+  padding: 28px;
+  transition: border-color .2s;
+  &:hover { border-color: $border-gold; }
+}
+
+.cq-feature-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: rgba($gold, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  i { font-size: 22px; color: $gold; }
+}
+
+.cq-feature-title { font-size: 16px; font-weight: 500; color: #fff; margin-bottom: 10px; }
+.cq-feature-desc  { font-size: 14px; color: $muted; line-height: 1.7; }
+
+.cq-service-prose { max-width: 760px; }
+
 // ── Process ────────────────────────────────────────────────────────────────
 .cq-process {
   display: grid;
@@ -705,6 +835,10 @@ h1 {
   .cq-process { grid-template-columns: 1fr 1fr; }
   .cq-news-grid { grid-template-columns: 1fr; }
   .cq-contact { grid-template-columns: 1fr; padding: 50px 24px; }
+  .cq-service-hero { grid-template-columns: 1fr; padding: 50px 24px; gap: 36px; }
+  .cq-service-hero-title { font-size: 36px; }
+  .cq-feature-grid { grid-template-columns: 1fr; }
+  .cq-cta-band { flex-direction: column; align-items: flex-start; padding: 32px 24px; margin: 40px 24px 56px; }
   .cq-page-head { padding: 50px 24px 24px; }
   .cq-page-head-center { padding: 50px 24px 24px; }
   .cq-page-title { font-size: 34px; }

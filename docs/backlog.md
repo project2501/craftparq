@@ -42,7 +42,7 @@ image-heavy.
 _Added: 2026-06-05_
 
 ### Future work (migrated from decisions.md §8)
-- [ ] Detail pages for each service (Training, Development, Consultancy)
+- [x] Detail pages for each service (Training, Development, Consultancy) — done 2026-06-05 (`/services/*`, EN + TR, plus a `/services/` overview)
 - [x] Standalone Contact page — done 2026-06-05 (`/contact/`, EN + TR)
 - [ ] About / Who is behind Craftparq page
 - [ ] Case studies / project highlights section
@@ -72,8 +72,8 @@ _Added: 2026-06-05_
 
 ### CI/CD pipeline (GitHub Actions)
 - [x] Deploy workflow written — `.github/workflows/deploy.yml` (build Hugo extended `0.156.0` → `aws s3 sync --delete` → optional CloudFront invalidation; long-lived AWS keys, OIDC noted as alternative). _done 2026-06-05_
-- [ ] Set repo Actions secrets: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `S3_BUCKET_NAME` (new bucket), and optionally `CLOUDFRONT_DISTRIBUTION_ID`
-- [ ] First successful deploy run verified (push to `main` or manual `workflow_dispatch`)
+- [x] Set repo Actions secrets: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `S3_BUCKET_NAME` (new bucket), and optionally `CLOUDFRONT_DISTRIBUTION_ID`
+- [x] First successful deploy run verified (push to `main` or manual `workflow_dispatch`)
 
 _Added: 2026-06-05_
 
