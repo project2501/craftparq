@@ -50,7 +50,7 @@ Precision engineering meets trusted partner. Not startup hype. Language should f
 |---|---|---|
 | Static site generator | **Hugo** | Familiar to owner; native i18n; fast build; no runtime |
 | Hosting | **AWS S3 + CloudFront** | Static files in S3; CloudFront for HTTPS, custom domain & CDN; ACM cert; deploy via CI (see §2.4, §7.3) |
-| CMS (news posts) | **Decap CMS** (formerly Netlify CMS) | Browser-based markdown editor at `/admin`; stores content in git. On S3 there is no Netlify git-gateway, so it needs the **GitHub backend + an OAuth proxy** (see §2.3) |
+| CMS (news posts) | **None** — author markdown directly in git | Single technical author; no need for browser editing, so no CMS (see §2.3). Posts are `.md` files committed to the repo |
 | Search | **Pagefind** (future) | Static, multilingual-aware, zero backend |
 | Forms | **Formspree / Web3Forms** (or AWS API Gateway + Lambda + SES) | No server of ours; Netlify Forms is unavailable on S3, so the form posts to a third-party endpoint or an AWS-native one |
 | Styles | **SCSS** (Hugo asset pipeline) | Variables, nesting, mixins — compiled by Hugo extended |
@@ -62,12 +62,13 @@ Precision engineering meets trusted partner. Not startup hype. Language should f
 - **Decision:** Hugo
 - **Rationale:** Owner already familiar; Hugo's i18n is first-class and requires no plugins; build times are near-instant; no Node.js runtime to manage; SCSS compiles natively in Hugo extended
 
-### 2.3 Decision: Decap CMS for news authoring
+### 2.3 Decision: No CMS — author markdown directly
 
 - **Options considered:** Forestry (discontinued), TinaCMS, Decap CMS, raw git/markdown
-- **Decision:** Decap CMS
-- **Rationale:** Open source; sits on top of Hugo with zero changes to content model; provides a `/admin` UI so news posts can be written in a browser without touching git or code; multilingual support via `i18n: multiple_folders`
-- **Auth implication of S3 hosting:** the original plan used Netlify Identity + git-gateway for auth, which only exists on Netlify. On S3/CloudFront the CMS must use Decap's **`backend: github`** (or `gitlab`), which requires a small **OAuth proxy** (a Lambda/Worker, or a hosted one) to complete the GitHub OAuth handshake. The current `static/admin/config.yml` still uses `git-gateway` and must be switched. See backlog.
+- **Decision:** No browser CMS *(revised 2026-06-05 — previously Decap CMS)*
+- **Rationale:** News posts are written by a single technical author, so browser-based editing adds no value. A CMS only earns its place when non-technical people must publish without touching git.
+- **What this avoids:** Decap's `git-gateway` is Netlify-only and doesn't work on S3; the alternative (`backend: github`) would have required registering a GitHub OAuth App and standing up an OAuth-proxy server (Lambda/Worker) just to complete the login handshake. Dropping the CMS removes all of that.
+- **Consequence:** the `static/admin/` Decap files were removed. Posts are authored as `.md` files in `content/en/news/` or `content/tr/news/` and committed to git (see §6.2).
 
 ### 2.4 Decision: AWS S3 + CloudFront for hosting
 
@@ -145,8 +146,7 @@ All UI labels live in `i18n/en.yaml` and `i18n/tr.yaml`. Used via `{{ i18n "key"
 | Service: Training | `/services/training/` | Detail page (to be built) |
 | Service: Development | `/services/development/` | Detail page (to be built) |
 | Service: Consultancy | `/services/consultancy/` | Detail page (to be built) |
-| Contact | `/contact/` | Standalone contact page (to be built) |
-| Admin (CMS) | `/admin/` | Decap CMS — not in nav, not indexed |
+| Contact | `/contact/` | Standalone contact page |
 
 ### 4.2 Navigation (EN)
 
@@ -186,8 +186,7 @@ draft: false
 
 ### 6.2 Writing workflow
 
-- **Via CMS:** visit `craftparq.com/admin`, authenticate with Netlify Identity, write in the browser editor, publish — Decap commits the markdown to git automatically
-- **Via code editor:** create a file in `content/en/news/` or `content/tr/news/`, fill front matter, write markdown, set `draft: false`, commit and push
+- Create a file in `content/en/news/` or `content/tr/news/`, fill in the front matter, write the markdown body, set `draft: false`, then commit and push. The deploy workflow (§7.4) rebuilds and publishes automatically.
 
 ### 6.3 Creating a new post via CLI
 
@@ -263,4 +262,4 @@ Added EN|TR language toggle to nav (compact pill switcher, gold active state). N
 
 ---
 
-*Last updated: 2026-06-05 — hosting changed to AWS S3 + CloudFront (§2.4)*
+*Last updated: 2026-06-05 — hosting changed to AWS S3 + CloudFront (§2.4); dropped browser CMS (§2.3)*

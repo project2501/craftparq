@@ -36,8 +36,8 @@ Featured-image support (Option A) is implemented: posts take an optional `image`
 front-matter field, served at original size. To get auto-generated thumbnails,
 WebP, and responsive `srcset`, convert news posts to page bundles
 (`news/my-post/index.md` + co-located image) and use Hugo's `.Resources` image
-processing in `news-card.html` / `single.html`. Also requires updating the Decap
-`path`/`media_folder` config. Worth doing once posts become image-heavy.
+processing in `news-card.html` / `single.html`. Worth doing once posts become
+image-heavy.
 
 _Added: 2026-06-05_
 
@@ -66,21 +66,18 @@ _Migrated: 2026-06-05_
 - [ ] ACM certificate in `us-east-1` for `craftparq.com`
 - [ ] DNS pointing the domain at CloudFront (Route 53 or external)
 - [ ] CloudFront Function / rewrite to map Hugo pretty URLs to `index.html` for sub-directory requests (`/news/` → `/news/index.html`)
+- [ ] IAM permissions for the deploy identity: `s3:PutObject`/`DeleteObject`/`ListBucket` on the bucket (+ `/*`) and `cloudfront:CreateInvalidation`
 
 _Added: 2026-06-05_
 
 ### CI/CD pipeline (GitHub Actions)
-Build Hugo and deploy on push to `main` (no built-in git deploy on S3):
-checkout → install pinned Hugo extended → `hugo --minify` →
-`aws s3 sync ./public s3://<bucket> --delete` →
-`aws cloudfront create-invalidation`. Auth via IAM user or OIDC role.
+- [x] Deploy workflow written — `.github/workflows/deploy.yml` (build Hugo extended `0.156.0` → `aws s3 sync --delete` → optional CloudFront invalidation; long-lived AWS keys, OIDC noted as alternative). _done 2026-06-05_
+- [ ] Set repo Actions secrets: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `S3_BUCKET_NAME` (new bucket), and optionally `CLOUDFRONT_DISTRIBUTION_ID`
+- [ ] First successful deploy run verified (push to `main` or manual `workflow_dispatch`)
 
 _Added: 2026-06-05_
 
-### Switch Decap CMS auth off git-gateway
-`static/admin/config.yml` still uses `backend: git-gateway` (Netlify-only).
-On S3 there is no git-gateway, so switch to `backend: github` and stand up a
-small OAuth proxy (Lambda / Worker / hosted) to complete the GitHub OAuth
-handshake. Until then, `/admin` browser editing won't authenticate.
-
-_Added: 2026-06-05_
+### ~~Switch Decap CMS auth off git-gateway~~ — dropped
+Resolved by removing the browser CMS entirely (decisions.md §2.3): a single
+technical author writes posts as markdown in git, so no CMS, OAuth proxy, or
+GitHub backend is needed. `static/admin/` deleted 2026-06-05.
