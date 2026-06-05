@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1235 650" width="1235" height="650" role="img" aria-label="Flag of the United States">
+  <rect width="1235" height="650" fill="#fff"/>
+  <g fill="#b22234">
+    <rect width="1235" height="50" y="0"/>
+    <rect width="1235" height="50" y="100"/>
+    <rect width="1235" height="50" y="200"/>
+    <rect width="1235" height="50" y="300"/>
+    <rect width="1235" height="50" y="400"/>
+    <rect width="1235" height="50" y="500"/>
+    <rect width="1235" height="50" y="600"/>
+  </g>
+  <rect width="494" height="350" fill="#3c3b6e"/>
+  <defs>
+    <path id="s" d="M0,-12.8 L2.87,-3.95 12.16,-3.95 4.64,1.51 7.52,10.32 0,4.88 -7.52,10.32 -4.64,1.51 -12.16,-3.95 -2.87,-3.95 Z" fill="#fff"/>
+  </defs>
+  <g>
+    <use href="#s" x="41.2" y="35"/><use href="#s" x="123.5" y="35"/><use href="#s" x="205.8" y="35"/><use href="#s" x="288.2" y="35"/><use href="#s" x="370.5" y="35"/><use href="#s" x="452.8" y="35"/>
+    <use href="#s" x="82.3" y="70"/><use href="#s" x="164.7" y="70"/><use href="#s" x="247" y="70"/><use href="#s" x="329.3" y="70"/><use href="#s" x="411.7" y="70"/>
+    <use href="#s" x="41.2" y="105"/><use href="#s" x="123.5" y="105"/><use href="#s" x="205.8" y="105"/><use href="#s" x="288.2" y="105"/><use href="#s" x="370.5" y="105"/><use href="#s" x="452.8" y="105"/>
+    <use href="#s" x="82.3" y="140"/><use href="#s" x="164.7" y="140"/><use href="#s" x="247" y="140"/><use href="#s" x="329.3" y="140"/><use href="#s" x="411.7" y="140"/>
+    <use href="#s" x="41.2" y="175"/><use href="#s" x="123.5" y="175"/><use href="#s" x="205.8" y="175"/><use href="#s" x="288.2" y="175"/><use href="#s" x="370.5" y="175"/><use href="#s" x="452.8" y="175"/>
+    <use href="#s" x="82.3" y="210"/><use href="#s" x="164.7" y="210"/><use href="#s" x="247" y="210"/><use href="#s" x="329.3" y="210"/><use href="#s" x="411.7" y="210"/>
+    <use href="#s" x="41.2" y="245"/><use href="#s" x="123.5" y="245"/><use href="#s" x="205.8" y="245"/><use href="#s" x="288.2" y="245"/><use href="#s" x="370.5" y="245"/><use href="#s" x="452.8" y="245"/>
+    <use href="#s" x="82.3" y="280"/><use href="#s" x="164.7" y="280"/><use href="#s" x="247" y="280"/><use href="#s" x="329.3" y="280"/><use href="#s" x="411.7" y="280"/>
+    <use href="#s" x="41.2" y="315"/><use href="#s" x="123.5" y="315"/><use href="#s" x="205.8" y="315"/><use href="#s" x="288.2" y="315"/><use href="#s" x="370.5" y="315"/><use href="#s" x="452.8" y="315"/>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+# Hugo build output
+/public/
+/resources/_gen/
+.hugo_build.lock
+hugo_stats.json
+
+# Hugo / Node tooling
+/node_modules/
+package-lock.json
+
+# Environment & secrets
+.env
+.env.*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

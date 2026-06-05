@@ -1,0 +1,717 @@
+// ── Variables ──────────────────────────────────────────────────────────────
+$navy:        #0f1c2e;
+$slate:       #1e2d42;
+$gold:        #c9954a;
+$gold-light:  #e8b870;
+$text:        #e8e4dc;
+$muted:       #8a96a3;
+$border:      rgba(255,255,255,0.08);
+$border-gold: rgba(201,149,74,0.35);
+
+// ── Reset ──────────────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+// ── Base ───────────────────────────────────────────────────────────────────
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: $navy;
+  color: $text;
+  line-height: 1.7;
+}
+
+a { color: inherit; text-decoration: none; }
+
+// ── Nav ────────────────────────────────────────────────────────────────────
+.cq-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  border-bottom: 0.5px solid $border;
+  position: sticky;
+  top: 0;
+  background: rgba($navy, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+}
+
+.cq-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: -0.5px;
+  span { color: $gold; }
+}
+
+.cq-nav-center {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+  a {
+    color: $muted;
+    transition: color .2s;
+    &:hover, &[aria-current="page"] { color: $text; }
+  }
+}
+
+.cq-nav-right { display: flex; align-items: center; gap: 14px; }
+
+// ── Language switcher ──────────────────────────────────────────────────────
+.cq-lang {
+  display: flex;
+  align-items: center;
+  border: 0.5px solid $border;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cq-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  color: $muted;
+  transition: all .2s;
+  text-decoration: none;
+
+  &.active {
+    background: rgba($gold, 0.15);
+    color: $gold;
+  }
+  &:not(.active):hover { color: $text; background: rgba(#fff, 0.04); }
+  &:not(:last-child) {
+    border-right: 0.5px solid $border;
+  }
+
+  // Flags sit muted/desaturated by default, regain full color on hover or when active
+  &:hover .cq-flag,
+  &.active .cq-flag { filter: none; }
+}
+
+.cq-flag {
+  height: 11px;
+  width: auto;
+  display: block;
+  border-radius: 1px;
+  filter: grayscale(1) opacity(0.55);
+  transition: filter .2s;
+}
+
+.cq-nav-cta {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border: 1px solid $gold;
+  color: $gold;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+  &:hover { background: $gold; color: $navy; }
+}
+
+// ── Hero ───────────────────────────────────────────────────────────────────
+.cq-hero {
+  padding: 80px 40px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  border-bottom: 0.5px solid $border;
+}
+
+.cq-hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 52px;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+  em { font-style: italic; color: $gold-light; }
+}
+
+.cq-hero-sub {
+  font-size: 16px;
+  color: $muted;
+  line-height: 1.7;
+  max-width: 440px;
+  margin-bottom: 36px;
+}
+
+.cq-hero-actions { display: flex; gap: 14px; align-items: center; }
+
+.cq-hero-right { display: flex; flex-direction: column; gap: 16px; }
+
+// ── Buttons ────────────────────────────────────────────────────────────────
+.cq-btn-primary {
+  display: inline-block;
+  padding: 13px 28px;
+  background: $gold;
+  color: $navy;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s;
+  &:hover { background: $gold-light; }
+}
+
+.cq-btn-ghost {
+  display: inline-block;
+  padding: 13px 28px;
+  background: transparent;
+  color: $text;
+  border: 0.5px solid rgba(#fff, 0.3);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color .2s;
+  &:hover { border-color: rgba(#fff, 0.6); }
+}
+
+// ── Stat cards (hero right) ────────────────────────────────────────────────
+.cq-stat-card {
+  background: $slate;
+  border: 0.5px solid $border;
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cq-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background: rgba($gold, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  i { font-size: 20px; color: $gold; }
+}
+
+.cq-stat-label { font-size: 13px; color: $muted; margin-bottom: 4px; }
+.cq-stat-value { font-size: 15px; font-weight: 500; color: #fff; }
+
+// ── Sections ───────────────────────────────────────────────────────────────
+.cq-section {
+  padding: 70px 40px;
+  border-bottom: 0.5px solid $border;
+}
+
+.cq-section-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.cq-section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.cq-section-sub {
+  font-size: 15px;
+  color: $muted;
+  max-width: 500px;
+  line-height: 1.65;
+  margin-bottom: 44px;
+}
+
+.cq-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+}
+
+.cq-view-all {
+  font-size: 13px;
+  color: $gold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 0.5px solid rgba($gold, 0.3);
+  padding-bottom: 2px;
+  transition: border-color .2s;
+  &:hover { border-color: $gold; }
+}
+
+// ── Services grid ──────────────────────────────────────────────────────────
+.cq-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cq-service-card {
+  background: $slate;
+  border: 0.5px solid $border;
+  border-radius: 10px;
+  padding: 28px;
+  cursor: pointer;
+  transition: border-color .2s;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: $gold;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  &:hover { border-color: $border-gold; &::before { opacity: 1; } }
+}
+
+.cq-service-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: rgba($gold, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  i { font-size: 22px; color: $gold; }
+}
+
+.cq-service-title { font-size: 17px; font-weight: 500; color: #fff; margin-bottom: 10px; }
+.cq-service-desc  { font-size: 13px; color: $muted; line-height: 1.7; margin-bottom: 18px; }
+
+.cq-service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.cq-tag {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 0.5px solid rgba($gold, 0.3);
+  color: $gold-light;
+  background: rgba($gold, 0.06);
+}
+
+// ── Process ────────────────────────────────────────────────────────────────
+.cq-process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 36px;
+}
+
+.cq-process-step {
+  padding: 28px 24px;
+  position: relative;
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 0.5px; height: 60%;
+    background: $border;
+  }
+}
+
+.cq-process-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 42px;
+  color: rgba($gold, 0.2);
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.cq-process-title { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 8px; }
+.cq-process-desc  { font-size: 12px; color: $muted; line-height: 1.65; }
+
+// ── News filter bar ────────────────────────────────────────────────────────
+.cq-filter-bar { display: flex; gap: 8px; margin-bottom: 28px; }
+
+.cq-filter-btn {
+  padding: 6px 16px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 0.5px solid $border;
+  background: transparent;
+  color: $muted;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+
+  &.active {
+    background: rgba($gold, 0.12);
+    color: $gold;
+    border-color: $border-gold;
+  }
+  &:not(.active):hover { color: $text; border-color: rgba(#fff, 0.2); }
+}
+
+// ── News grid ──────────────────────────────────────────────────────────────
+.cq-news-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 20px;
+}
+
+.cq-news-card {
+  background: $slate;
+  border: 0.5px solid $border;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .25s;
+  display: flex;
+  flex-direction: column;
+
+  &:hover { border-color: $border-gold; }
+}
+
+.cq-news-card-img {
+  height: 130px;
+  background: linear-gradient(135deg, #1a3050 0%, #0f2035 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5px solid $border;
+  position: relative;
+  overflow: hidden;
+
+  i { font-size: 36px; color: rgba($gold, 0.4); position: relative; }
+
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}
+
+.cq-news-card.featured .cq-news-card-img { height: 200px; }
+
+.cq-news-card-img-pattern {
+  position: absolute; inset: 0; opacity: 0.07;
+  background-image: repeating-linear-gradient(45deg, $gold 0, $gold 1px, transparent 0, transparent 50%);
+  background-size: 16px 16px;
+}
+
+.cq-news-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cq-news-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.cq-news-lang {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: rgba($gold, 0.12);
+  color: $gold;
+  border: 0.5px solid rgba($gold, 0.25);
+
+  &.tr {
+    background: rgba(30,100,200,0.12);
+    color: #7aaee8;
+    border-color: rgba(30,100,200,0.25);
+  }
+}
+
+.cq-news-date { font-size: 11px; color: $muted; }
+.cq-news-cat  { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: $muted; margin-left: auto; }
+
+.cq-news-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.45;
+  margin-bottom: 10px;
+  a { color: inherit; }
+}
+.cq-news-card.featured .cq-news-title { font-size: 18px; }
+.cq-news-excerpt { font-size: 13px; color: $muted; line-height: 1.65; flex: 1; }
+.cq-news-read    { margin-top: 16px; font-size: 12px; color: $gold; display: flex; align-items: center; gap: 5px; }
+
+// ── Contact ────────────────────────────────────────────────────────────────
+.cq-page-head {
+  padding: 70px 40px 32px;
+  max-width: 760px;
+}
+
+.cq-page-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 44px;
+  line-height: 1.1;
+  color: #fff;
+  margin: 14px 0 18px;
+}
+
+.cq-page-intro {
+  font-size: 16px;
+  color: $muted;
+  line-height: 1.8;
+
+  p { margin: 0 0 1em; &:last-child { margin-bottom: 0; } }
+  a { color: $gold; }
+}
+
+.cq-contact {
+  padding: 70px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  border-bottom: 0.5px solid $border;
+}
+
+// ── Standalone contact page ─────────────────────────────────────────────────
+.cq-page-head-center {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 72px 40px 36px;
+
+  .cq-page-intro { margin: 0 auto; }
+}
+
+.cq-contact-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 0 40px 90px;
+}
+
+.cq-contact-card {
+  width: 100%;
+  max-width: 1040px;
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) 1fr;
+  border: 0.5px solid $border;
+  border-radius: 14px;
+  overflow: hidden;
+  background: $slate;
+}
+
+.cq-contact-aside {
+  display: flex;
+  flex-direction: column;
+  padding: 44px 40px;
+  background: linear-gradient(160deg, #1a3050 0%, #14233a 100%);
+  border-right: 0.5px solid $border;
+}
+
+.cq-aside-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 25px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.cq-aside-sub {
+  font-size: 14px;
+  color: $muted;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.cq-methods { display: flex; flex-direction: column; }
+
+.cq-method {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 0.5px solid $border;
+  text-decoration: none;
+  transition: all .2s;
+
+  &:last-child { border-bottom: 0.5px solid $border; }
+  &:hover .cq-method-icon { background: rgba($gold, 0.22); color: $gold-light; }
+  &:hover .cq-method-value { color: #fff; }
+  &:hover .cq-method-arrow { opacity: 1; transform: translate(2px, -2px); }
+}
+
+.cq-method-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: rgba($gold, 0.12);
+  color: $gold;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  transition: all .2s;
+}
+
+.cq-method-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.cq-method-label { font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase; color: $muted; }
+.cq-method-value { font-size: 14px; color: $text; transition: color .2s; word-break: break-word; }
+.cq-method-arrow { margin-left: auto; color: $muted; font-size: 16px; opacity: 0; transition: all .2s; }
+
+.cq-aside-note {
+  margin-top: auto;
+  padding-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: $muted;
+
+  i { color: $gold; font-size: 18px; }
+}
+
+.cq-contact-formside { padding: 44px 40px; }
+
+.cq-contact-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 38px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.cq-contact-sub { font-size: 15px; color: $muted; line-height: 1.7; margin-bottom: 32px; }
+.cq-contact-links { display: flex; flex-direction: column; gap: 12px; }
+.cq-contact-link { display: flex; align-items: center; gap: 12px; color: $muted; font-size: 14px; i { font-size: 18px; color: $gold; } }
+
+.cq-form {
+  background: $slate;
+  border: 0.5px solid $border;
+  border-radius: 10px;
+  padding: 32px;
+}
+
+.cq-form-row { margin-bottom: 18px; }
+
+.cq-form-label {
+  font-size: 12px;
+  color: $muted;
+  margin-bottom: 8px;
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+%input-base {
+  width: 100%;
+  padding: 11px 14px;
+  background: $navy;
+  border: 0.5px solid rgba(#fff, 0.12);
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: $text;
+  outline: none;
+  transition: border-color .2s;
+  &:focus { border-color: rgba($gold, 0.5); }
+}
+
+.cq-form-input    { @extend %input-base; }
+.cq-form-select   { @extend %input-base; appearance: none; }
+.cq-form-textarea { @extend %input-base; resize: vertical; min-height: 80px; }
+
+// ── News single post ───────────────────────────────────────────────────────
+.cq-post {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.cq-post-header { margin-bottom: 40px; }
+
+.cq-post-hero {
+  margin: 0 0 40px;
+  border: 0.5px solid $border;
+  border-radius: 8px;
+  overflow: hidden;
+
+  img { width: 100%; height: auto; display: block; }
+}
+
+.cq-post-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 40px;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin: 16px 0 12px;
+}
+
+.cq-post-meta { display: flex; align-items: center; gap: 12px; }
+
+.cq-post-body {
+  font-size: 16px;
+  color: $text;
+  line-height: 1.8;
+  h2 { font-family: 'DM Serif Display', serif; font-size: 26px; color: #fff; margin: 40px 0 16px; }
+  h3 { font-size: 18px; font-weight: 500; color: #fff; margin: 28px 0 12px; }
+  p  { margin-bottom: 20px; color: rgba($text, 0.85); }
+  ul, ol { margin: 0 0 20px 24px; li { margin-bottom: 8px; } }
+  code { font-size: 13px; background: $slate; padding: 2px 6px; border-radius: 3px; }
+  pre  { background: $slate; padding: 20px; border-radius: 8px; overflow-x: auto; margin-bottom: 24px; code { background: none; padding: 0; } }
+  blockquote { border-left: 3px solid $gold; padding-left: 20px; color: $muted; font-style: italic; margin: 24px 0; }
+}
+
+.cq-post-footer { margin-top: 48px; padding-top: 32px; border-top: 0.5px solid $border; }
+
+// ── Footer ─────────────────────────────────────────────────────────────────
+.cq-footer {
+  padding: 24px 40px;
+  border-top: 0.5px solid $border;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cq-footer-copy { font-size: 12px; color: $muted; }
+.cq-footer-links { display: flex; gap: 16px; a { color: $muted; font-size: 18px; transition: color .2s; &:hover { color: $gold; } } }
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .cq-nav-center { display: none; }
+  .cq-hero { grid-template-columns: 1fr; padding: 50px 24px; }
+  .cq-hero-right { display: none; }
+  h1 { font-size: 38px; }
+  .cq-services-grid { grid-template-columns: 1fr; }
+  .cq-process { grid-template-columns: 1fr 1fr; }
+  .cq-news-grid { grid-template-columns: 1fr; }
+  .cq-contact { grid-template-columns: 1fr; padding: 50px 24px; }
+  .cq-page-head { padding: 50px 24px 24px; }
+  .cq-page-head-center { padding: 50px 24px 24px; }
+  .cq-page-title { font-size: 34px; }
+  .cq-contact-wrap { padding: 0 24px 60px; }
+  .cq-contact-card { grid-template-columns: 1fr; }
+  .cq-contact-aside { padding: 32px 24px; border-right: none; border-bottom: 0.5px solid $border; }
+  .cq-contact-formside { padding: 32px 24px; }
+  .cq-section { padding: 50px 24px; }
+  .cq-nav { padding: 16px 24px; }
+}

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Craftparq — Homepage Mockup v2 (Multilingual + News)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+    :root {
+      --navy:       #0f1c2e;
+      --slate:      #1e2d42;
+      --gold:       #c9954a;
+      --gold-light: #e8b870;
+      --text:       #e8e4dc;
+      --muted:      #8a96a3;
+      --border:     rgba(255,255,255,0.08);
+      --border-gold:rgba(201,149,74,0.35);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .cq-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 40px; border-bottom: 0.5px solid var(--border);
+      position: sticky; top: 0; background: rgba(15,28,46,0.95);
+      backdrop-filter: blur(8px); z-index: 100;
+    }
+    .cq-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; letter-spacing: -0.5px; }
+    .cq-logo span { color: var(--gold); }
+    .cq-nav-center { display: flex; gap: 28px; font-size: 13px; }
+    .cq-nav-center a { color: var(--muted); transition: color .2s; cursor: pointer; }
+    .cq-nav-center a:hover { color: var(--text); }
+    .cq-nav-right { display: flex; align-items: center; gap: 14px; }
+
+    /* LANGUAGE SWITCHER */
+    .cq-lang { display: flex; align-items: center; border: 0.5px solid var(--border); border-radius: 5px; overflow: hidden; }
+    .cq-lang-btn {
+      padding: 6px 12px; font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+      background: transparent; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; color: var(--muted); transition: all .2s;
+    }
+    .cq-lang-btn.active { background: rgba(201,149,74,0.15); color: var(--gold); }
+    .cq-lang-btn:not(.active):hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .cq-lang-btn:not(:last-child) { border-right: 0.5px solid var(--border); }
+
+    .cq-nav-cta {
+      font-size: 13px; font-weight: 500; padding: 8px 20px;
+      border: 1px solid var(--gold); color: var(--gold);
+      border-radius: 4px; cursor: pointer; background: transparent;
+      font-family: 'DM Sans', sans-serif; transition: all .2s;
+    }
+    .cq-nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* HERO */
+    .cq-hero {
+      padding: 80px 40px 60px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .cq-hero-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 500; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: 52px; line-height: 1.1; color: #fff; margin-bottom: 24px; letter-spacing: -1px; }
+    h1 em { font-style: italic; color: var(--gold-light); }
+    .cq-hero-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 440px; margin-bottom: 36px; }
+    .cq-hero-actions { display: flex; gap: 14px; align-items: center; }
+    .cq-btn-primary { padding: 13px 28px; background: var(--gold); color: var(--navy); border: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border-radius: 4px; cursor: pointer; transition: background .2s; }
+    .cq-btn-primary:hover { background: var(--gold-light); }
+    .cq-btn-ghost { padding: 13px 28px; background: transparent; color: var(--text); border: 0.5px solid rgba(255,255,255,0.3); font-family: 'DM Sans', sans-serif; font-size: 14px; border-radius: 4px; cursor: pointer; transition: border-color .2s; }
+    .cq-btn-ghost:hover { border-color: rgba(255,255,255,0.6); }
+    .cq-hero-right { display: flex; flex-direction: column; gap: 16px; }
+    .cq-stat-card { background: var(--slate); border: 0.5px solid var(--border); border-radius: 8px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
+    .cq-stat-icon { width: 44px; height: 44px; border-radius: 6px; background: rgba(201,149,74,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cq-stat-icon i { font-size: 20px; color: var(--gold); }
+    .cq-stat-label { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .cq-stat-value { font-size: 15px; font-weight: 500; color: #fff; }
+
+    /* SECTION */
+    .cq-section { padding: 70px 40px; border-bottom: 0.5px solid var(--border); }
+    .cq-section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+    .cq-section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; }
+    .cq-section-title { font-family: 'DM Serif Display', serif; font-size: 36px; color: #fff; letter-spacing: -0.5px; }
+    .cq-view-all { font-size: 13px; color: var(--gold); display: flex; align-items: center; gap: 6px; border-bottom: 0.5px solid rgba(201,149,74,0.3); padding-bottom: 2px; transition: border-color .2s; cursor: pointer; }
+    .cq-view-all:hover { border-color: var(--gold); }
+
+    /* FILTER BAR */
+    .cq-filter-bar { display: flex; gap: 8px; margin-bottom: 28px; }
+    .cq-filter-btn {
+      padding: 6px 16px; font-size: 12px; border-radius: 4px;
+      border: 0.5px solid var(--border); background: transparent;
+      color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .2s;
+    }
+    .cq-filter-btn.active { background: rgba(201,149,74,0.12); color: var(--gold); border-color: var(--border-gold); }
+    .cq-filter-btn:not(.active):hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* NEWS GRID */
+    .cq-news-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 20px; }
+    .cq-news-card {
+      background: var(--slate); border: 0.5px solid var(--border);
+      border-radius: 10px; overflow: hidden; cursor: pointer;
+      transition: border-color .25s; display: flex; flex-direction: column;
+    }
+    .cq-news-card:hover { border-color: var(--border-gold); }
+    .cq-news-card-img {
+      height: 130px; background: linear-gradient(135deg, #1a3050 0%, #0f2035 100%);
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 0.5px solid var(--border); position: relative; overflow: hidden;
+    }
+    .cq-news-card.featured .cq-news-card-img { height: 200px; }
+    .cq-news-card-img-pattern {
+      position: absolute; inset: 0; opacity: 0.07;
+      background-image: repeating-linear-gradient(45deg, #c9954a 0, #c9954a 1px, transparent 0, transparent 50%);
+      background-size: 16px 16px;
+    }
+    .cq-news-card-img i { font-size: 36px; color: rgba(201,149,74,0.4); position: relative; }
+    .cq-news-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .cq-news-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .cq-news-lang {
+      font-size: 10px; font-weight: 500; letter-spacing: 1px; padding: 3px 8px;
+      border-radius: 3px; background: rgba(201,149,74,0.12); color: var(--gold);
+      border: 0.5px solid rgba(201,149,74,0.25);
+    }
+    .cq-news-lang.tr { background: rgba(30,100,200,0.12); color: #7aaee8; border-color: rgba(30,100,200,0.25); }
+    .cq-news-date { font-size: 11px; color: var(--muted); }
+    .cq-news-cat { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-left: auto; }
+    .cq-news-title { font-size: 15px; font-weight: 500; color: #fff; line-height: 1.45; margin-bottom: 10px; }
+    .cq-news-card.featured .cq-news-title { font-size: 18px; }
+    .cq-news-excerpt { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
+    .cq-news-read { margin-top: 16px; font-size: 12px; color: var(--gold); display: flex; align-items: center; gap: 5px; }
+
+    /* HUGO CALLOUT */
+    .cq-callout {
+      margin: 0 40px 40px; background: rgba(30,45,66,0.6); border: 0.5px solid rgba(201,149,74,0.2);
+      border-radius: 10px; padding: 24px 28px; display: flex; gap: 20px; align-items: flex-start;
+    }
+    .cq-callout-icon { color: var(--gold); font-size: 22px; margin-top: 2px; flex-shrink: 0; }
+    .cq-callout-title { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 6px; }
+    .cq-callout-text { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .cq-callout-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .cq-callout-pill { font-size: 11px; padding: 4px 10px; border-radius: 3px; font-family: monospace; background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.1); color: #c5c0b8; }
+
+    /* FOOTER */
+    .cq-footer { padding: 24px 40px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .cq-footer-copy { font-size: 12px; color: var(--muted); }
+
+    /* VERSION BADGE */
+    .version-badge { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 500; padding: 6px 14px; border-radius: 20px; font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body>
+
+  <nav class="cq-nav">
+    <div class="cq-logo">Craft<span>parq</span></div>
+    <div class="cq-nav-center">
+      <a>Training</a>
+      <a>Development</a>
+      <a>Consultancy</a>
+      <a>News</a>
+    </div>
+    <div class="cq-nav-right">
+      <div class="cq-lang" id="langSwitch">
+        <button class="cq-lang-btn active" onclick="setLang('EN', this)">EN</button>
+        <button class="cq-lang-btn" onclick="setLang('TR', this)">TR</button>
+      </div>
+      <button class="cq-nav-cta" id="ctaBtn">Contact Us</button>
+    </div>
+  </nav>
+
+  <section class="cq-hero">
+    <div>
+      <div class="cq-hero-eyebrow">Software Engineering · Training · Architecture</div>
+      <h1 id="heroH1">We Build.<br><em>We Teach.</em><br>We Architect.</h1>
+      <p class="cq-hero-sub" id="heroSub">From SaaS products to enterprise systems — Craftparq delivers end-to-end software development, expert training, and architecture consultancy tailored to your team and domain.</p>
+      <div class="cq-hero-actions">
+        <button class="cq-btn-primary" id="heroCta1">Start a Project →</button>
+        <button class="cq-btn-ghost" id="heroCta2">Explore Training</button>
+      </div>
+    </div>
+    <div class="cq-hero-right">
+      <div class="cq-stat-card">
+        <div class="cq-stat-icon"><i class="ti ti-code"></i></div>
+        <div>
+          <div class="cq-stat-label">Full-spectrum delivery</div>
+          <div class="cq-stat-value">Cloud · Mobile · Desktop · Industrial · Gaming</div>
+        </div>
+      </div>
+      <div class="cq-stat-card">
+        <div class="cq-stat-icon"><i class="ti ti-school"></i></div>
+        <div>
+          <div class="cq-stat-label">Expert training</div>
+          <div class="cq-stat-value">Microsoft stack · Software Architecture · Team SDLC</div>
+        </div>
+      </div>
+      <div class="cq-stat-card">
+        <div class="cq-stat-icon"><i class="ti ti-sitemap"></i></div>
+        <div>
+          <div class="cq-stat-label">Architecture consultancy</div>
+          <div class="cq-stat-value">System design · Roadmaps · Legacy modernization</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cq-section" id="newsSection">
+    <div class="cq-section-header">
+      <div>
+        <div class="cq-section-tag" id="newsTag">Latest from Craftparq</div>
+        <div class="cq-section-title" id="newsTitle">News & Insights</div>
+      </div>
+      <a class="cq-view-all" id="viewAll">View all posts <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="cq-filter-bar">
+      <button class="cq-filter-btn active" data-filter="all" id="fAll">All</button>
+      <button class="cq-filter-btn" data-filter="en" id="fEn">English only</button>
+      <button class="cq-filter-btn" data-filter="tr" id="fTr">Türkçe</button>
+    </div>
+
+    <div class="cq-news-grid" id="newsGrid">
+      <div class="cq-news-card featured" data-lang="en">
+        <div class="cq-news-card-img">
+          <div class="cq-news-card-img-pattern"></div>
+          <i class="ti ti-topology-star-3"></i>
+        </div>
+        <div class="cq-news-card-body">
+          <div class="cq-news-meta">
+            <span class="cq-news-lang">EN</span>
+            <span class="cq-news-date">28 May 2026</span>
+            <span class="cq-news-cat">Architecture</span>
+          </div>
+          <div class="cq-news-title">Why most teams get software architecture backwards — and how to fix it</div>
+          <p class="cq-news-excerpt">Architecture isn't a phase you complete before development starts. It's a continuous conversation shaped by constraints, feedback, and team capability. Here's what that actually looks like in practice.</p>
+          <div class="cq-news-read">Read article <i class="ti ti-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="cq-news-card" data-lang="tr">
+        <div class="cq-news-card-img">
+          <div class="cq-news-card-img-pattern"></div>
+          <i class="ti ti-cloud"></i>
+        </div>
+        <div class="cq-news-card-body">
+          <div class="cq-news-meta">
+            <span class="cq-news-lang tr">TR</span>
+            <span class="cq-news-date">15 May 2026</span>
+            <span class="cq-news-cat">Bulut</span>
+          </div>
+          <div class="cq-news-title">Azure'da mikro servis mimarisi: Ekip eğitiminden üretime</div>
+          <p class="cq-news-excerpt">Birçok ekip mimari kararlarını çok geç alıyor. Bu yazıda doğru soruları nasıl önceden sormanız gerektiğini inceliyoruz.</p>
+          <div class="cq-news-read">Devamını oku <i class="ti ti-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="cq-news-card" data-lang="en">
+        <div class="cq-news-card-img">
+          <div class="cq-news-card-img-pattern"></div>
+          <i class="ti ti-school"></i>
+        </div>
+        <div class="cq-news-card-body">
+          <div class="cq-news-meta">
+            <span class="cq-news-lang">EN</span>
+            <span class="cq-news-date">3 May 2026</span>
+            <span class="cq-news-cat">Training</span>
+          </div>
+          <div class="cq-news-title">What a good team training engagement looks like from day one</div>
+          <p class="cq-news-excerpt">A candid look at how we structure team upskilling programs to actually stick long after the sessions end.</p>
+          <div class="cq-news-read">Read article <i class="ti ti-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cq-callout">
+    <i class="ti ti-brand-github cq-callout-icon"></i>
+    <div>
+      <div class="cq-callout-title">Recommended Hugo project structure for multilingual + news</div>
+      <div class="cq-callout-text">This layout supports EN/TR language switching and blog-style news posts, all from markdown files. Decap CMS plugs in at <code style="font-size:11px; background:rgba(255,255,255,0.07); padding:2px 6px; border-radius:3px;">/admin</code> to give you a browser-based editor without touching git.</div>
+      <div class="cq-callout-pills">
+        <span class="cq-callout-pill">content/en/news/</span>
+        <span class="cq-callout-pill">content/tr/news/</span>
+        <span class="cq-callout-pill">i18n/en.yaml</span>
+        <span class="cq-callout-pill">i18n/tr.yaml</span>
+        <span class="cq-callout-pill">config/_default/languages.toml</span>
+        <span class="cq-callout-pill">static/admin/config.yml</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="cq-footer">
+    <div class="cq-logo" style="font-size:16px;">Craft<span>parq</span></div>
+    <div class="cq-footer-copy">© 2026 Craftparq · Software Engineering · Training · Consultancy</div>
+  </footer>
+
+  <div class="version-badge">Mockup v2 — Multilingual + News</div>
+
+  <script>
+    const copy = {
+      EN: {
+        cta: 'Contact Us',
+        h1: 'We Build.<br><em>We Teach.</em><br>We Architect.',
+        sub: 'From SaaS products to enterprise systems — Craftparq delivers end-to-end software development, expert training, and architecture consultancy tailored to your team and domain.',
+        cta1: 'Start a Project →', cta2: 'Explore Training',
+        tag: 'Latest from Craftparq', title: 'News & Insights',
+        viewAll: 'View all posts', fAll: 'All', fEn: 'English only', fTr: 'Türkçe'
+      },
+      TR: {
+        cta: 'İletişim',
+        h1: 'İnşa Ediyoruz.<br><em>Öğretiyoruz.</em><br>Tasarlıyoruz.',
+        sub: 'SaaS ürünlerinden kurumsal sistemlere — Craftparq, ekibinize ve alanınıza özel uçtan uca yazılım geliştirme, uzman eğitim ve mimari danışmanlık sunar.',
+        cta1: 'Proje Başlat →', cta2: 'Eğitimleri İncele',
+        tag: "Craftparq'tan haberler", title: 'Haberler & Yazılar',
+        viewAll: 'Tüm yazılar', fAll: 'Tümü', fEn: 'Sadece İngilizce', fTr: 'Türkçe'
+      }
+    };
+
+    function setLang(lang, btn) {
+      document.querySelectorAll('.cq-lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const L = copy[lang];
+      document.getElementById('ctaBtn').textContent = L.cta;
+      document.getElementById('heroH1').innerHTML = L.h1;
+      document.getElementById('heroSub').textContent = L.sub;
+      document.getElementById('heroCta1').textContent = L.cta1;
+      document.getElementById('heroCta2').textContent = L.cta2;
+      document.getElementById('newsTag').textContent = L.tag;
+      document.getElementById('newsTitle').textContent = L.title;
+      document.getElementById('viewAll').innerHTML = L.viewAll + ' <i class="ti ti-arrow-right"></i>';
+      document.getElementById('fAll').textContent = L.fAll;
+      document.getElementById('fEn').textContent = L.fEn;
+      document.getElementById('fTr').textContent = L.fTr;
+      if (lang === 'TR') filterNews('tr', document.getElementById('fTr'));
+      else filterNews('all', document.getElementById('fAll'));
+    }
+
+    document.querySelectorAll('.cq-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => filterNews(btn.dataset.filter, btn));
+    });
+
+    function filterNews(filter, btn) {
+      document.querySelectorAll('.cq-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.cq-news-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.lang === filter) ? 'flex' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>

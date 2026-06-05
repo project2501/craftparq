@@ -1,0 +1,22 @@
+{{ $p := .page }}
+{{ $featured := .featured }}
+<article class="cq-news-card{{ if $featured }} featured{{ end }}" data-lang="{{ $p.Language.Lang }}">
+  <div class="cq-news-card-img">
+    {{ with $p.Params.image }}
+      <img src="{{ . | relURL }}" alt="{{ $p.Title }}" loading="lazy">
+    {{ else }}
+      <div class="cq-news-card-img-pattern"></div>
+      <i class="ti {{ $p.Params.icon | default "ti-file-text" }}" aria-hidden="true"></i>
+    {{ end }}
+  </div>
+  <div class="cq-news-card-body">
+    <div class="cq-news-meta">
+      <span class="cq-news-lang {{ $p.Language.Lang }}">{{ upper $p.Language.Lang }}</span>
+      <span class="cq-news-date">{{ $p.Date.Format "2 Jan 2006" }}</span>
+      {{ with $p.Params.category }}<span class="cq-news-cat">{{ . }}</span>{{ end }}
+    </div>
+    <h3 class="cq-news-title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    <p class="cq-news-excerpt">{{ $p.Summary }}</p>
+    <div class="cq-news-read">{{ i18n "read_more" }} <i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+  </div>
+</article>

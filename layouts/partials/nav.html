@@ -1,0 +1,44 @@
+<nav class="cq-nav" role="navigation" aria-label="Main navigation">
+  <a class="cq-logo" href="{{ "/" | relLangURL }}">Craft<span>parq</span></a>
+
+  <div class="cq-nav-center">
+    {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+    {{ end }}
+  </div>
+
+  <div class="cq-nav-right">
+    {{/* Language switcher */}}
+    <div class="cq-lang" role="group" aria-label="Language selector">
+      {{ $flags := dict "en" "us" "tr" "tr" }}
+      {{ range .Site.Languages }}
+        {{ $lang := . }}
+        {{ $url := "" }}
+        {{/* Link to the translation of the current page in this language, if it exists */}}
+        {{ range $.AllTranslations }}
+          {{ if eq .Language.Lang $lang.Lang }}
+            {{ $url = .RelPermalink }}
+          {{ end }}
+        {{ end }}
+        {{/* Fallback: that language's home page */}}
+        {{ if not $url }}
+          {{ range $.Sites }}
+            {{ if eq .Language.Lang $lang.Lang }}
+              {{ $url = .Home.RelPermalink }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        <a href="{{ $url }}"
+           class="cq-lang-btn{{ if eq $lang.Lang $.Language.Lang }} active{{ end }}"
+           lang="{{ $lang.Lang }}"
+           hreflang="{{ $lang.Lang }}">
+          {{ with index $flags $lang.Lang }}
+          <img class="cq-flag" src="{{ (printf "/img/flags/%s.svg" .) | relURL }}" alt="" aria-hidden="true">
+          {{ end }}
+          {{ upper $lang.Lang }}
+        </a>
+      {{ end }}
+    </div>
+    <a href="{{ "/contact" | relLangURL }}" class="cq-nav-cta">{{ i18n "contact_us" }}</a>
+  </div>
+</nav>

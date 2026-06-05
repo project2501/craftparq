@@ -1,0 +1,9 @@
+description      = "End-to-end software development, expert training, and architecture consultancy."
+author           = "Craftparq"
+email            = "hello@craftparq.com"
+linkedin         = "https://linkedin.com/company/craftparq"
+githubUrl        = ""
+calendarUrl      = ""    # e.g. https://calendly.com/craftparq
+
+[hero]
+  eyebrow = "Software Engineering · Training · Architecture"

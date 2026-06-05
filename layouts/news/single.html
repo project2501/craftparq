@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article class="cq-post">
+  <header class="cq-post-header">
+    <div class="cq-section-tag">{{ .Params.category }}</div>
+    <h1 class="cq-post-title">{{ .Title }}</h1>
+    <div class="cq-post-meta">
+      <span class="cq-news-lang {{ .Language.Lang }}">{{ upper .Language.Lang }}</span>
+      <span class="cq-news-date">{{ .Date.Format "2 January 2006" }}</span>
+    </div>
+  </header>
+  {{ with .Params.image }}
+  <figure class="cq-post-hero">
+    <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+  </figure>
+  {{ end }}
+  <div class="cq-post-body">
+    {{ .Content }}
+  </div>
+  <footer class="cq-post-footer">
+    <a href="{{ "/news" | relLangURL }}" class="cq-btn-ghost">← {{ i18n "view_all_news" }}</a>
+  </footer>
+</article>
+{{ end }}

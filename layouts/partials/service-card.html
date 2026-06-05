@@ -1,0 +1,8 @@
+<a class="cq-service-card" href="{{ .url }}">
+  <div class="cq-service-icon"><i class="ti {{ .icon }}" aria-hidden="true"></i></div>
+  <div class="cq-service-title">{{ i18n .titleKey }}</div>
+  <p class="cq-service-desc">{{ i18n .descKey }}</p>
+  <div class="cq-service-tags">
+    {{ range .tags }}<span class="cq-tag">{{ . }}</span>{{ end }}
+  </div>
+</a>

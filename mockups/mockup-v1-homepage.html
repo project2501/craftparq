@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Craftparq — Homepage Mockup v1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+    :root {
+      --navy:       #0f1c2e;
+      --slate:      #1e2d42;
+      --gold:       #c9954a;
+      --gold-light: #e8b870;
+      --text:       #e8e4dc;
+      --muted:      #8a96a3;
+      --border:     rgba(255,255,255,0.08);
+      --border-gold:rgba(201,149,74,0.35);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .cq-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 40px; border-bottom: 0.5px solid var(--border);
+      position: sticky; top: 0; background: rgba(15,28,46,0.95);
+      backdrop-filter: blur(8px); z-index: 100;
+    }
+    .cq-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; letter-spacing: -0.5px; }
+    .cq-logo span { color: var(--gold); }
+    .cq-nav-links { display: flex; gap: 28px; font-size: 13px; }
+    .cq-nav-links a { color: var(--muted); transition: color .2s; cursor: pointer; }
+    .cq-nav-links a:hover { color: var(--text); }
+    .cq-nav-cta {
+      font-size: 13px; font-weight: 500; padding: 8px 20px;
+      border: 1px solid var(--gold); color: var(--gold);
+      border-radius: 4px; cursor: pointer; background: transparent;
+      font-family: 'DM Sans', sans-serif; transition: all .2s;
+    }
+    .cq-nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* HERO */
+    .cq-hero {
+      padding: 80px 40px 60px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .cq-hero-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 500; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: 52px; line-height: 1.1; color: #fff; margin-bottom: 24px; letter-spacing: -1px; }
+    h1 em { font-style: italic; color: var(--gold-light); }
+    .cq-hero-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 440px; margin-bottom: 36px; }
+    .cq-hero-actions { display: flex; gap: 14px; align-items: center; }
+    .cq-btn-primary { padding: 13px 28px; background: var(--gold); color: var(--navy); border: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border-radius: 4px; cursor: pointer; transition: background .2s; }
+    .cq-btn-primary:hover { background: var(--gold-light); }
+    .cq-btn-ghost { padding: 13px 28px; background: transparent; color: var(--text); border: 0.5px solid rgba(255,255,255,0.3); font-family: 'DM Sans', sans-serif; font-size: 14px; border-radius: 4px; cursor: pointer; transition: border-color .2s; }
+    .cq-btn-ghost:hover { border-color: rgba(255,255,255,0.6); }
+    .cq-hero-right { display: flex; flex-direction: column; gap: 16px; }
+    .cq-stat-card { background: var(--slate); border: 0.5px solid var(--border); border-radius: 8px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
+    .cq-stat-icon { width: 44px; height: 44px; border-radius: 6px; background: rgba(201,149,74,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cq-stat-icon i { font-size: 20px; color: var(--gold); }
+    .cq-stat-label { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .cq-stat-value { font-size: 15px; font-weight: 500; color: #fff; }
+
+    /* SECTION */
+    .cq-section { padding: 70px 40px; border-bottom: 0.5px solid var(--border); }
+    .cq-section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+    .cq-section-title { font-family: 'DM Serif Display', serif; font-size: 36px; color: #fff; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .cq-section-sub { font-size: 15px; color: var(--muted); max-width: 500px; line-height: 1.65; margin-bottom: 44px; }
+
+    /* SERVICES */
+    .cq-services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cq-service-card {
+      background: var(--slate); border: 0.5px solid var(--border); border-radius: 10px;
+      padding: 28px; cursor: pointer; transition: border-color .2s; display: block; position: relative; overflow: hidden;
+    }
+    .cq-service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); opacity: 0; transition: opacity .2s; }
+    .cq-service-card:hover { border-color: var(--border-gold); }
+    .cq-service-card:hover::before { opacity: 1; }
+    .cq-service-icon { width: 48px; height: 48px; border-radius: 8px; background: rgba(201,149,74,0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .cq-service-icon i { font-size: 22px; color: var(--gold); }
+    .cq-service-title { font-size: 17px; font-weight: 500; color: #fff; margin-bottom: 10px; }
+    .cq-service-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+    .cq-service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cq-tag { font-size: 11px; padding: 4px 10px; border-radius: 3px; border: 0.5px solid rgba(201,149,74,0.3); color: var(--gold-light); background: rgba(201,149,74,0.06); }
+
+    /* PROCESS */
+    .cq-process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 36px; }
+    .cq-process-step { padding: 28px 24px; position: relative; }
+    .cq-process-step:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 0.5px; height: 60%; background: var(--border); }
+    .cq-process-num { font-family: 'DM Serif Display', serif; font-size: 42px; color: rgba(201,149,74,0.2); margin-bottom: 12px; line-height: 1; }
+    .cq-process-title { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 8px; }
+    .cq-process-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+    /* CONTACT */
+    .cq-contact { padding: 70px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .cq-contact-title { font-family: 'DM Serif Display', serif; font-size: 38px; color: #fff; margin-bottom: 16px; }
+    .cq-contact-sub { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+    .cq-contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .cq-contact-link { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 14px; }
+    .cq-contact-link i { font-size: 18px; color: var(--gold); }
+    .cq-form { background: var(--slate); border: 0.5px solid var(--border); border-radius: 10px; padding: 32px; }
+    .cq-form-row { margin-bottom: 18px; }
+    .cq-form-label { font-size: 12px; color: var(--muted); margin-bottom: 8px; display: block; letter-spacing: 0.5px; }
+    .cq-form-input, .cq-form-select, .cq-form-textarea { width: 100%; padding: 11px 14px; background: var(--navy); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 5px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border-color .2s; }
+    .cq-form-input:focus, .cq-form-select:focus, .cq-form-textarea:focus { border-color: rgba(201,149,74,0.5); }
+    .cq-form-textarea { resize: vertical; min-height: 80px; }
+    .cq-form-select { appearance: none; }
+
+    /* FOOTER */
+    .cq-footer { padding: 24px 40px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .cq-footer-copy { font-size: 12px; color: var(--muted); }
+
+    /* VERSION BADGE */
+    .version-badge { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 500; padding: 6px 14px; border-radius: 20px; font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body>
+
+  <nav class="cq-nav">
+    <div class="cq-logo">Craft<span>parq</span></div>
+    <div class="cq-nav-links">
+      <a>Training</a>
+      <a>Development</a>
+      <a>Consultancy</a>
+      <a>About</a>
+    </div>
+    <button class="cq-nav-cta">Contact Us</button>
+  </nav>
+
+  <section class="cq-hero">
+    <div>
+      <div class="cq-hero-eyebrow">Software Engineering · Training · Architecture</div>
+      <h1>We Build.<br><em>We Teach.</em><br>We Architect.</h1>
+      <p class="cq-hero-sub">From SaaS products to enterprise systems — Craftparq delivers end-to-end software development, expert training, and architecture consultancy tailored to your team and domain.</p>
+      <div class="cq-hero-actions">
+        <button class="cq-btn-primary">Start a Project →</button>
+        <button class="cq-btn-ghost">Explore Training</button>
+      </div>
+    </div>
+    <div class="cq-hero-right">
+      <div class="cq-stat-card">
+        <div class="cq-stat-icon"><i class="ti ti-code"></i></div>
+        <div>
+          <div class="cq-stat-label">Full-spectrum delivery</div>
+          <div class="cq-stat-value">Cloud · Mobile · Desktop · Industrial · Gaming</div>
+        </div>
+      </div>
+      <div class="cq-stat-card">
+        <div class="cq-stat-icon"><i class="ti ti-school"></i></div>
+        <div>
+          <div class="cq-stat-label">Expert training</div>
+          <div class="cq-stat-value">Microsoft stack · Software Architecture · Team SDLC</div>
+        </div>
+      </div>
+      <div class="cq-stat-card">
+        <div class="cq-stat-icon"><i class="ti ti-sitemap"></i></div>
+        <div>
+          <div class="cq-stat-label">Architecture consultancy</div>
+          <div class="cq-stat-value">System design · Roadmaps · Legacy modernization</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cq-section">
+    <div class="cq-section-tag">What we offer</div>
+    <div class="cq-section-title">Three ways to engage</div>
+    <p class="cq-section-sub">Whether you need a product built, a team trained, or an architect on call — Craftparq is a single partner for all of it.</p>
+    <div class="cq-services-grid">
+      <div class="cq-service-card">
+        <div class="cq-service-icon"><i class="ti ti-school"></i></div>
+        <div class="cq-service-title">Training & Upskilling</div>
+        <p class="cq-service-desc">Structured programs for individual developers and entire engineering teams. From architecture fundamentals to tailored SDLC optimization for your organization.</p>
+        <div class="cq-service-tags">
+          <span class="cq-tag">Software Architecture</span>
+          <span class="cq-tag">Microsoft Stack</span>
+          <span class="cq-tag">Team Programs</span>
+          <span class="cq-tag">SDLC Design</span>
+        </div>
+      </div>
+      <div class="cq-service-card">
+        <div class="cq-service-icon"><i class="ti ti-rocket"></i></div>
+        <div class="cq-service-title">Product & Solution Development</div>
+        <p class="cq-service-desc">End-to-end software delivery across cloud, mobile, desktop, distributed, industrial, and gaming domains. Contract-based or freelance engagements.</p>
+        <div class="cq-service-tags">
+          <span class="cq-tag">SaaS Products</span>
+          <span class="cq-tag">Cloud & Mobile</span>
+          <span class="cq-tag">Industrial</span>
+          <span class="cq-tag">Gaming</span>
+        </div>
+      </div>
+      <div class="cq-service-card">
+        <div class="cq-service-icon"><i class="ti ti-topology-star-3"></i></div>
+        <div class="cq-service-title">Architecture Consultancy</div>
+        <p class="cq-service-desc">Strategic guidance on system design, technology selection, and solution architecture. One-time reviews or ongoing advisory partnerships.</p>
+        <div class="cq-service-tags">
+          <span class="cq-tag">System Design</span>
+          <span class="cq-tag">Tech Roadmap</span>
+          <span class="cq-tag">Modernization</span>
+          <span class="cq-tag">Advisory</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cq-section">
+    <div class="cq-section-tag">How we work</div>
+    <div class="cq-section-title">Simple, transparent process</div>
+    <div class="cq-process">
+      <div class="cq-process-step">
+        <div class="cq-process-num">01</div>
+        <div class="cq-process-title">Discovery</div>
+        <p class="cq-process-desc">We learn your domain, constraints, and goals before proposing anything.</p>
+      </div>
+      <div class="cq-process-step">
+        <div class="cq-process-num">02</div>
+        <div class="cq-process-title">Proposal</div>
+        <p class="cq-process-desc">A scoped plan with clear deliverables, timeline, and engagement model.</p>
+      </div>
+      <div class="cq-process-step">
+        <div class="cq-process-num">03</div>
+        <div class="cq-process-title">Execution</div>
+        <p class="cq-process-desc">Delivery with regular checkpoints — build, train, or advise, depending on scope.</p>
+      </div>
+      <div class="cq-process-step">
+        <div class="cq-process-num">04</div>
+        <div class="cq-process-title">Handoff</div>
+        <p class="cq-process-desc">Full knowledge transfer and documentation so your team owns the outcome.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cq-contact">
+    <div>
+      <div class="cq-section-tag">Get in touch</div>
+      <div class="cq-contact-title">Let's build<br>something together</div>
+      <p class="cq-contact-sub">Whether you're starting from scratch, scaling a team, or untangling an architecture — tell us what you need.</p>
+      <div class="cq-contact-links">
+        <div class="cq-contact-link"><i class="ti ti-mail"></i> hello@craftparq.com</div>
+        <div class="cq-contact-link"><i class="ti ti-brand-linkedin"></i> linkedin.com/company/craftparq</div>
+        <div class="cq-contact-link"><i class="ti ti-calendar"></i> Book a 30-min intro call</div>
+      </div>
+    </div>
+    <div class="cq-form">
+      <div class="cq-form-row">
+        <label class="cq-form-label">Name</label>
+        <input class="cq-form-input" type="text" placeholder="Your name" />
+      </div>
+      <div class="cq-form-row">
+        <label class="cq-form-label">Email</label>
+        <input class="cq-form-input" type="email" placeholder="you@company.com" />
+      </div>
+      <div class="cq-form-row">
+        <label class="cq-form-label">I'm interested in</label>
+        <select class="cq-form-select">
+          <option>Training & Upskilling</option>
+          <option>Product Development</option>
+          <option>Architecture Consultancy</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="cq-form-row">
+        <label class="cq-form-label">Tell us briefly what you need</label>
+        <textarea class="cq-form-textarea" placeholder="A few sentences is plenty..."></textarea>
+      </div>
+      <button class="cq-btn-primary" style="width:100%;">Send Message →</button>
+    </div>
+  </div>
+
+  <footer class="cq-footer">
+    <div class="cq-logo" style="font-size:16px;">Craft<span>parq</span></div>
+    <div class="cq-footer-copy">© 2026 Craftparq · Software Engineering · Training · Consultancy</div>
+  </footer>
+
+  <div class="version-badge">Mockup v1 — Homepage</div>
+
+</body>
+</html>

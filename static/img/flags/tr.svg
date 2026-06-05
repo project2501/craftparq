@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Flag of Türkiye">
+  <rect width="1200" height="800" fill="#e30a17"/>
+  <circle cx="450" cy="400" r="200" fill="#fff"/>
+  <circle cx="525" cy="400" r="165" fill="#e30a17"/>
+  <path fill="#fff" transform="translate(770,400)" d="M0,-90 L20.2,-27.8 85.6,-27.8 32.7,10.6 52.9,72.8 0,34.4 -52.9,72.8 -32.7,10.6 -85.6,-27.8 -20.2,-27.8 Z"/>
+</svg>

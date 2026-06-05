@@ -1,0 +1,26 @@
+{{/* Reusable contact form — used by the homepage contact section and the standalone /contact page */}}
+{{/* Replace action URL with your form backend, e.g. Formspree */}}
+<form action="#" method="POST" name="contact" netlify>
+  <div class="cq-form-row">
+    <label class="cq-form-label" for="name">{{ i18n "contact_name" }}</label>
+    <input class="cq-form-input" type="text" id="name" name="name" required />
+  </div>
+  <div class="cq-form-row">
+    <label class="cq-form-label" for="email">{{ i18n "contact_email" }}</label>
+    <input class="cq-form-input" type="email" id="email" name="email" required />
+  </div>
+  <div class="cq-form-row">
+    <label class="cq-form-label" for="interest">{{ i18n "contact_interest" }}</label>
+    <select class="cq-form-select" id="interest" name="interest">
+      <option>{{ i18n "interest_training" }}</option>
+      <option>{{ i18n "interest_dev" }}</option>
+      <option>{{ i18n "interest_arch" }}</option>
+      <option>{{ i18n "interest_other" }}</option>
+    </select>
+  </div>
+  <div class="cq-form-row">
+    <label class="cq-form-label" for="message">{{ i18n "contact_message" }}</label>
+    <textarea class="cq-form-textarea" id="message" name="message"></textarea>
+  </div>
+  <button type="submit" class="cq-btn-primary" style="width:100%;">{{ i18n "contact_send" }} →</button>
+</form>

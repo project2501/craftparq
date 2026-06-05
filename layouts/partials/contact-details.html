@@ -1,0 +1,12 @@
+{{/* Reusable contact details — email, LinkedIn, booking link */}}
+<div class="cq-contact-links">
+  {{ with .Site.Params.email }}
+    <div class="cq-contact-link"><i class="ti ti-mail" aria-hidden="true"></i> <a href="mailto:{{ . }}">{{ . }}</a></div>
+  {{ end }}
+  {{ with .Site.Params.linkedin }}
+    <div class="cq-contact-link"><i class="ti ti-brand-linkedin" aria-hidden="true"></i> <a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a></div>
+  {{ end }}
+  {{ with .Site.Params.calendarUrl }}
+    <div class="cq-contact-link"><i class="ti ti-calendar" aria-hidden="true"></i> <a href="{{ . }}" target="_blank" rel="noopener">{{ i18n "contact_book_call" }}</a></div>
+  {{ end }}
+</div>

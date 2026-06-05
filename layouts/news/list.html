@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="cq-section">
+  <div class="cq-section-tag">{{ i18n "latest_news_tag" }}</div>
+  <div class="cq-section-title">{{ i18n "latest_news_title" }}</div>
+
+  <div class="cq-filter-bar" style="margin-top:28px;">
+    <button class="cq-filter-btn active" data-filter="all">{{ i18n "filter_all" }}</button>
+    <button class="cq-filter-btn" data-filter="en">{{ i18n "filter_en" }}</button>
+    <button class="cq-filter-btn" data-filter="tr">{{ i18n "filter_tr" }}</button>
+  </div>
+
+  <div class="cq-news-grid" style="margin-top:28px;">
+    {{ range .Pages }}
+      {{ partial "news-card.html" (dict "page" . "featured" false) }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

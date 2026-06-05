@@ -1,0 +1,57 @@
+[en]
+  languageName = "English"
+  languageCode  = "en-US"
+  weight        = 1
+  contentDir    = "content/en"
+
+  [en.params]
+    languageFlag = "🇬🇧"
+
+  [[en.menus.main]]
+    name    = "Training"
+    pageRef = "/services/training"
+    weight  = 1
+
+  [[en.menus.main]]
+    name    = "Development"
+    pageRef = "/services/development"
+    weight  = 2
+
+  [[en.menus.main]]
+    name    = "Consultancy"
+    pageRef = "/services/consultancy"
+    weight  = 3
+
+  [[en.menus.main]]
+    name    = "News"
+    pageRef = "/news"
+    weight  = 4
+
+[tr]
+  languageName = "Türkçe"
+  languageCode  = "tr-TR"
+  weight        = 2
+  contentDir    = "content/tr"
+
+  [tr.params]
+    languageFlag = "🇹🇷"
+
+  [[tr.menus.main]]
+    name    = "Eğitim"
+    pageRef = "/services/training"
+    weight  = 1
+
+  [[tr.menus.main]]
+    name    = "Geliştirme"
+    pageRef = "/services/development"
+    weight  = 2
+
+  [[tr.menus.main]]
+    name    = "Danışmanlık"
+    pageRef = "/services/consultancy"
+    weight  = 3
+
+  [[tr.menus.main]]
+    name    = "Haberler"
+    pageRef = "/news"
+    weight  = 4

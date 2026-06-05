@@ -1,0 +1,14 @@
+baseURL = "https://craftparq.com/"
+title = "Craftparq"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+summaryLength = 30
+
+[build]
+  writeStats = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  page = ["HTML"]

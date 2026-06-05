@@ -1,0 +1,58 @@
+{{ define "main" }}
+<section class="cq-page-head cq-page-head-center">
+  <div class="cq-section-tag">{{ i18n "contact_tag" }}</div>
+  <h1 class="cq-page-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="cq-page-intro">{{ . }}</div>{{ end }}
+</section>
+
+<div class="cq-contact-wrap">
+  <div class="cq-contact-card">
+    <aside class="cq-contact-aside">
+      <h2 class="cq-aside-title">{{ i18n "contact_reach_title" }}</h2>
+      <p class="cq-aside-sub">{{ i18n "contact_reach_sub" }}</p>
+
+      <div class="cq-methods">
+        {{ with .Site.Params.email }}
+        <a class="cq-method" href="mailto:{{ . }}">
+          <span class="cq-method-icon"><i class="ti ti-mail" aria-hidden="true"></i></span>
+          <span class="cq-method-text">
+            <span class="cq-method-label">{{ i18n "contact_email" }}</span>
+            <span class="cq-method-value">{{ . }}</span>
+          </span>
+          <i class="ti ti-arrow-up-right cq-method-arrow" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+        {{ with .Site.Params.linkedin }}
+        <a class="cq-method" href="{{ . }}" target="_blank" rel="noopener">
+          <span class="cq-method-icon"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></span>
+          <span class="cq-method-text">
+            <span class="cq-method-label">LinkedIn</span>
+            <span class="cq-method-value">{{ i18n "contact_linkedin_value" }}</span>
+          </span>
+          <i class="ti ti-arrow-up-right cq-method-arrow" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+        {{ with .Site.Params.calendarUrl }}
+        <a class="cq-method" href="{{ . }}" target="_blank" rel="noopener">
+          <span class="cq-method-icon"><i class="ti ti-calendar" aria-hidden="true"></i></span>
+          <span class="cq-method-text">
+            <span class="cq-method-label">{{ i18n "contact_call_label" }}</span>
+            <span class="cq-method-value">{{ i18n "contact_book_call" }}</span>
+          </span>
+          <i class="ti ti-arrow-up-right cq-method-arrow" aria-hidden="true"></i>
+        </a>
+        {{ end }}
+      </div>
+
+      <div class="cq-aside-note">
+        <i class="ti ti-clock-hour-4" aria-hidden="true"></i>
+        <span>{{ i18n "contact_response_note" }}</span>
+      </div>
+    </aside>
+
+    <div class="cq-contact-formside">
+      {{ partial "contact-form.html" . }}
+    </div>
+  </div>
+</div>
+{{ end }}

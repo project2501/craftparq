@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Continuous architecture — abstract blueprint">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a3050"/>
+      <stop offset="1" stop-color="#0f1c2e"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#c9954a" stroke-width="0.5" stroke-opacity="0.12"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Abstract layered architecture blocks -->
+  <g fill="none" stroke="#c9954a" stroke-width="2" stroke-opacity="0.85">
+    <rect x="120" y="380" width="360" height="120" rx="6"/>
+    <rect x="160" y="240" width="280" height="100" rx="6" stroke-opacity="0.6"/>
+    <rect x="200" y="130" width="200" height="80" rx="6" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Connecting nodes -->
+  <g fill="#e8b870">
+    <circle cx="700" cy="180" r="6"/>
+    <circle cx="880" cy="300" r="6"/>
+    <circle cx="760" cy="440" r="6"/>
+    <circle cx="980" cy="470" r="6"/>
+  </g>
+  <g stroke="#e8b870" stroke-width="1.5" stroke-opacity="0.5">
+    <line x1="700" y1="180" x2="880" y2="300"/>
+    <line x1="880" y1="300" x2="760" y2="440"/>
+    <line x1="760" y1="440" x2="980" y2="470"/>
+    <line x1="880" y1="300" x2="980" y2="470"/>
+  </g>
+
+  <text x="120" y="560" font-family="'DM Serif Display', Georgia, serif" font-size="40" fill="#ffffff">Continuous Architecture</text>
+  <text x="122" y="595" font-family="'DM Sans', Arial, sans-serif" font-size="18" fill="#8a96a3" letter-spacing="2">CRAFTPARQ — ARCHITECTURE</text>
+</svg>

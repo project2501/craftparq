@@ -1,0 +1,76 @@
+{{ define "main" }}
+
+{{/* ── HERO ── */}}
+<section class="cq-hero">
+  <div class="cq-hero-left">
+    <div class="cq-hero-eyebrow">{{ .Site.Params.hero.eyebrow }}</div>
+    <h1>{{ .Params.hero_line1 | default "We Build." }}<br>
+        <em>{{ .Params.hero_line2 | default "We Teach." }}</em><br>
+        {{ .Params.hero_line3 | default "We Architect." }}</h1>
+    <p class="cq-hero-sub">{{ .Params.hero_sub | default .Site.Params.description }}</p>
+    <div class="cq-hero-actions">
+      <a href="{{ "/contact" | relLangURL }}" class="cq-btn-primary">{{ i18n "hero_cta_primary" }} →</a>
+      <a href="{{ "/services/training" | relLangURL }}" class="cq-btn-ghost">{{ i18n "hero_cta_secondary" }}</a>
+    </div>
+  </div>
+  <div class="cq-hero-right">
+    {{ partial "hero-cards.html" . }}
+  </div>
+</section>
+
+{{/* ── SERVICES ── */}}
+<section class="cq-section" id="services">
+  <div class="cq-section-tag">{{ i18n "services_tag" }}</div>
+  <div class="cq-section-title">{{ i18n "services_title" }}</div>
+  <p class="cq-section-sub">{{ i18n "services_sub" }}</p>
+  <div class="cq-services-grid">
+    {{ partial "service-card.html" (dict "icon" "ti-school"          "titleKey" "svc_training_title"     "descKey" "svc_training_desc"     "tags" (slice "Software Architecture" "Microsoft Stack" "Team Programs" "SDLC Design")    "url" ("/services/training"     | relLangURL)) }}
+    {{ partial "service-card.html" (dict "icon" "ti-rocket"          "titleKey" "svc_dev_title"          "descKey" "svc_dev_desc"          "tags" (slice "SaaS Products" "Cloud & Mobile" "Industrial" "Gaming")                      "url" ("/services/development"  | relLangURL)) }}
+    {{ partial "service-card.html" (dict "icon" "ti-topology-star-3" "titleKey" "svc_arch_title"         "descKey" "svc_arch_desc"         "tags" (slice "System Design" "Tech Roadmap" "Modernization" "Advisory")                   "url" ("/services/consultancy" | relLangURL)) }}
+  </div>
+</section>
+
+{{/* ── PROCESS ── */}}
+<section class="cq-section" id="process">
+  <div class="cq-section-tag">{{ i18n "process_tag" }}</div>
+  <div class="cq-section-title">{{ i18n "process_title" }}</div>
+  <div class="cq-process">
+    {{ range seq 4 }}
+      {{ $n := . }}
+      <div class="cq-process-step">
+        <div class="cq-process-num">0{{ $n }}</div>
+        <div class="cq-process-title">{{ i18n (printf "step%d_title" $n) }}</div>
+        <p class="cq-process-desc">{{ i18n (printf "step%d_desc" $n) }}</p>
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+{{/* ── NEWS ── */}}
+{{ $news := where (where .Site.RegularPages "Section" "news") "Draft" false }}
+{{ if $news }}
+<section class="cq-section" id="news">
+  <div class="cq-section-header">
+    <div>
+      <div class="cq-section-tag">{{ i18n "latest_news_tag" }}</div>
+      <div class="cq-section-title">{{ i18n "latest_news_title" }}</div>
+    </div>
+    <a href="{{ "/news" | relLangURL }}" class="cq-view-all">{{ i18n "view_all_news" }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+  </div>
+  <div class="cq-filter-bar">
+    <button class="cq-filter-btn active" data-filter="all">{{ i18n "filter_all" }}</button>
+    <button class="cq-filter-btn" data-filter="en">{{ i18n "filter_en" }}</button>
+    <button class="cq-filter-btn" data-filter="tr">{{ i18n "filter_tr" }}</button>
+  </div>
+  <div class="cq-news-grid">
+    {{ range first 3 ($news | default slice) }}
+      {{ partial "news-card.html" (dict "page" . "featured" (eq . (index $news 0))) }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{/* ── CONTACT ── */}}
+{{ partial "contact-section.html" . }}
+
+{{ end }}
